@@ -1,1 +1,867 @@
-Unemployed: 1. yardy 2. naits 3. ram
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>[Your Name/Studio Name] | Minecraft Mod Developer</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--font-display: "Press Start 2P", "Trebuchet MS", sans-serif;
+			--font-body: "Chakra Petch", "Segoe UI", sans-serif;
+
+			--sky-1: #88b9d9;
+			--sky-2: #3d6f96;
+			--leaf-1: #7ea35c;
+			--leaf-2: #49673b;
+			--dirt-1: #8b5e3c;
+			--dirt-2: #5f412c;
+			--stone-1: #cfd5d8;
+			--stone-2: #6f7a84;
+			--ink: #1e1916;
+			--paper: #f0e8da;
+			--panel: rgba(240, 232, 218, 0.9);
+			--panel-deep: rgba(36, 32, 30, 0.88);
+			--line: #2d2620;
+			--accent: #b8d96f;
+			--accent-strong: #8db447;
+			--focus: #e7ffb5;
+			--shadow: 0 12px 26px rgba(27, 23, 20, 0.24);
+			--radius: 14px;
+			--content-width: 1120px;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			margin: 0;
+			font-family: var(--font-body);
+			color: var(--ink);
+			line-height: 1.55;
+			background:
+				radial-gradient(circle at 20% -10%, rgba(207, 235, 255, 0.42), transparent 40%),
+				radial-gradient(circle at 80% 0%, rgba(122, 175, 97, 0.26), transparent 36%),
+				linear-gradient(180deg, var(--sky-1) 0%, #8cb6d0 12%, #7ba45d 22%, #6c9252 36%, #6f5b45 64%, #594332 100%);
+			min-height: 100vh;
+		}
+
+		body::before {
+			content: "";
+			position: fixed;
+			inset: 0;
+			pointer-events: none;
+			opacity: 0.22;
+			background-image:
+				linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+				linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+			background-size: 28px 28px;
+			z-index: -1;
+		}
+
+		img {
+			display: block;
+			max-width: 100%;
+		}
+
+		a {
+			color: inherit;
+		}
+
+		.container {
+			width: min(var(--content-width), 92vw);
+			margin: 0 auto;
+		}
+
+		.minecraft-frame {
+			border: 3px solid var(--line);
+			border-radius: var(--radius);
+			box-shadow: var(--shadow);
+			position: relative;
+			overflow: hidden;
+		}
+
+		.minecraft-frame::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+			border: 3px solid rgba(255, 255, 255, 0.18);
+			border-radius: calc(var(--radius) - 2px);
+		}
+
+		.site-header {
+			position: sticky;
+			top: 0;
+			z-index: 50;
+			border-bottom: 2px solid rgba(31, 27, 24, 0.4);
+			background: linear-gradient(180deg, rgba(26, 23, 21, 0.9), rgba(39, 33, 30, 0.8));
+			backdrop-filter: blur(8px);
+		}
+
+		.site-header .container {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1rem;
+			padding: 0.9rem 0;
+		}
+
+		.brand {
+			margin: 0;
+			font-family: var(--font-display);
+			font-size: clamp(0.68rem, 0.9vw, 0.86rem);
+			color: var(--accent);
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+
+		.main-nav {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.45rem;
+			justify-content: flex-end;
+		}
+
+		.main-nav a {
+			text-decoration: none;
+			font-weight: 600;
+			color: #f8f3e7;
+			border: 2px solid rgba(248, 243, 231, 0.28);
+			border-radius: 8px;
+			padding: 0.36rem 0.68rem;
+			background: rgba(248, 243, 231, 0.08);
+			transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+		}
+
+		.main-nav a:hover,
+		.main-nav a:focus-visible {
+			transform: translateY(-2px);
+			background: rgba(184, 217, 111, 0.2);
+			border-color: rgba(184, 217, 111, 0.9);
+			outline: none;
+		}
+
+		.hero {
+			padding: clamp(3.5rem, 7vw, 5.5rem) 0 3rem;
+		}
+
+		.hero-shell {
+			display: grid;
+			gap: 1.4rem;
+			padding: clamp(1.4rem, 3vw, 2rem);
+			background:
+				linear-gradient(145deg, rgba(18, 16, 15, 0.86), rgba(42, 35, 31, 0.86)),
+				url("https://placehold.co/1600x900/50713f/edf7d2?text=Minecraft+Landscape+Background+Placeholder") center/cover no-repeat;
+			color: #f4ede0;
+		}
+
+		.hero-grid {
+			display: grid;
+			grid-template-columns: 1.2fr 0.8fr;
+			gap: 1.2rem;
+			align-items: center;
+		}
+
+		.eyebrow {
+			margin: 0 0 0.75rem;
+			font-size: 0.95rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: #d0e9a7;
+			font-weight: 600;
+		}
+
+		h1 {
+			margin: 0;
+			font-family: var(--font-display);
+			font-size: clamp(1.2rem, 2.8vw, 2rem);
+			line-height: 1.4;
+			color: #f4f1e7;
+			text-shadow: 0 3px 0 rgba(0, 0, 0, 0.35);
+		}
+
+		.tagline {
+			margin: 1rem 0 0;
+			font-size: clamp(1rem, 1.7vw, 1.22rem);
+			color: #efe6d3;
+			font-weight: 600;
+		}
+
+		.cta-row {
+			margin-top: 1.3rem;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.85rem;
+		}
+
+		.btn {
+			border: 0;
+			border-radius: 10px;
+			text-decoration: none;
+			font-weight: 700;
+			letter-spacing: 0.02em;
+			padding: 0.72rem 1.05rem;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			transition: transform 180ms ease, filter 180ms ease;
+			cursor: pointer;
+		}
+
+		.btn:focus-visible {
+			outline: 3px solid var(--focus);
+			outline-offset: 2px;
+		}
+
+		.btn.primary {
+			background: linear-gradient(180deg, #b9db73, #87ad45);
+			color: #1f1b17;
+			border: 2px solid #2f3f1d;
+		}
+
+		.btn.secondary {
+			background: linear-gradient(180deg, #8fb6d1, #537a97);
+			color: #f2f8fe;
+			border: 2px solid #243a4c;
+		}
+
+		.btn:hover,
+		.btn:focus-visible {
+			transform: translateY(-2px);
+			filter: brightness(1.05);
+		}
+
+		.hero-card {
+			background: rgba(245, 236, 217, 0.92);
+			color: var(--ink);
+			padding: 1rem;
+			border-radius: 12px;
+			border: 3px solid #5a422f;
+			box-shadow: 0 8px 18px rgba(10, 9, 8, 0.2);
+		}
+
+		.hero-card h2 {
+			margin: 0;
+			font-size: 1.1rem;
+		}
+
+		.hero-card p {
+			margin: 0.6rem 0 0;
+			font-size: 0.95rem;
+		}
+
+		.hero-card ul {
+			margin: 0.8rem 0 0;
+			padding: 0 0 0 1.1rem;
+		}
+
+		.hero-card li + li {
+			margin-top: 0.35rem;
+		}
+
+		.section {
+			padding: clamp(2.4rem, 5vw, 4rem) 0;
+		}
+
+		.section-shell {
+			padding: clamp(1rem, 2.2vw, 1.6rem);
+			background: var(--panel);
+		}
+
+		.section-title {
+			margin: 0;
+			font-family: var(--font-display);
+			font-size: clamp(0.98rem, 2vw, 1.28rem);
+			color: #2c3b20;
+			line-height: 1.4;
+		}
+
+		.section-subtitle {
+			margin: 0.78rem 0 0;
+			color: #322d28;
+			font-size: 1.04rem;
+			font-weight: 600;
+		}
+
+		.about-grid {
+			margin-top: 1.1rem;
+			display: grid;
+			grid-template-columns: 1.2fr 0.8fr;
+			gap: 1rem;
+		}
+
+		.detail-panel {
+			background: #f6efdf;
+			border: 2px solid #5c4b39;
+			border-radius: 10px;
+			padding: 1rem;
+		}
+
+		.detail-panel p {
+			margin: 0;
+			font-size: 1.03rem;
+		}
+
+		.bullet-list {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			display: grid;
+			gap: 0.55rem;
+		}
+
+		.bullet-list li {
+			background: linear-gradient(180deg, #deedbe, #cedda9);
+			border: 2px solid #5d7740;
+			border-radius: 8px;
+			padding: 0.5rem 0.65rem;
+			font-weight: 600;
+			color: #233019;
+		}
+
+		.projects-grid {
+			margin-top: 1.1rem;
+			display: grid;
+			gap: 1rem;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.project-card {
+			background: #f4ebd8;
+			border: 3px solid #604936;
+			border-radius: 12px;
+			overflow: hidden;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.project-media {
+			aspect-ratio: 16 / 9;
+			border-bottom: 3px solid #604936;
+			overflow: hidden;
+			background: #d5d7c3;
+		}
+
+		.project-body {
+			padding: 0.95rem;
+			display: grid;
+			gap: 0.55rem;
+		}
+
+		.project-title {
+			margin: 0;
+			font-size: 1.1rem;
+			color: #2d261f;
+		}
+
+		.project-description,
+		.project-tech {
+			margin: 0;
+			color: #2f2a25;
+			font-size: 0.98rem;
+		}
+
+		.project-tech strong {
+			color: #233d24;
+		}
+
+		.project-links {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.45rem;
+			margin-top: 0.15rem;
+		}
+
+		.project-links a {
+			text-align: center;
+			text-decoration: none;
+			font-weight: 700;
+			color: #1f1a16;
+			border: 2px solid #5f4938;
+			border-radius: 8px;
+			padding: 0.42rem;
+			background: linear-gradient(180deg, #e9e2d2, #d3c7b4);
+			transition: transform 160ms ease, background-color 160ms ease;
+		}
+
+		.project-links a:hover,
+		.project-links a:focus-visible {
+			transform: translateY(-2px);
+			background: linear-gradient(180deg, #d7ebb2, #b5d087);
+			outline: none;
+		}
+
+		.skill-chip-grid {
+			margin-top: 1.1rem;
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			gap: 0.65rem;
+		}
+
+		.skill-chip {
+			display: flex;
+			align-items: center;
+			gap: 0.55rem;
+			border: 2px solid #4d5f43;
+			background: linear-gradient(180deg, #e9f1d3, #d3e0b4);
+			border-radius: 10px;
+			padding: 0.58rem 0.7rem;
+			font-weight: 700;
+			color: #253421;
+		}
+
+		.chip-icon {
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			width: 1.6rem;
+			height: 1.6rem;
+			border-radius: 6px;
+			border: 2px solid #4e6943;
+			background: #b8d48c;
+			font-family: var(--font-display);
+			font-size: 0.58rem;
+			color: #1b2a13;
+			flex-shrink: 0;
+		}
+
+		.contact-grid {
+			margin-top: 1.1rem;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 1rem;
+		}
+
+		.contact-panel {
+			background: #f5eddd;
+			border: 2px solid #5e4b37;
+			border-radius: 10px;
+			padding: 1rem;
+		}
+
+		.contact-note {
+			margin: 0 0 0.9rem;
+			color: #2f2a24;
+			font-weight: 600;
+		}
+
+		.placeholder-form {
+			display: grid;
+			gap: 0.65rem;
+		}
+
+		.placeholder-form label {
+			display: grid;
+			gap: 0.35rem;
+			font-weight: 700;
+			color: #2a251f;
+		}
+
+		.placeholder-form input,
+		.placeholder-form textarea {
+			width: 100%;
+			border: 2px solid #5f4e3c;
+			border-radius: 8px;
+			padding: 0.62rem;
+			font: inherit;
+			background: #fffdf8;
+			color: #181512;
+		}
+
+		.placeholder-form textarea {
+			min-height: 128px;
+			resize: vertical;
+		}
+
+		.placeholder-form button {
+			justify-self: start;
+		}
+
+		.social-list {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: grid;
+			gap: 0.58rem;
+		}
+
+		.social-list a {
+			display: block;
+			text-decoration: none;
+			font-weight: 700;
+			border: 2px solid #4f6344;
+			border-radius: 8px;
+			padding: 0.5rem 0.62rem;
+			background: linear-gradient(180deg, #ebf3d8, #d2e2b1);
+			color: #22321d;
+			transition: transform 160ms ease;
+		}
+
+		.social-list a:hover,
+		.social-list a:focus-visible {
+			transform: translateX(2px);
+			outline: none;
+		}
+
+		.email-line {
+			margin-top: 0.85rem;
+			font-weight: 700;
+			color: #2b3c26;
+		}
+
+		.email-line a {
+			color: #244f85;
+			word-break: break-word;
+		}
+
+		.site-footer {
+			padding: 1.2rem 0 1.8rem;
+			color: #f6f0df;
+		}
+
+		.site-footer .container {
+			border-top: 2px solid rgba(247, 241, 229, 0.45);
+			padding-top: 1rem;
+			text-align: center;
+			font-weight: 600;
+		}
+
+		.reveal {
+			opacity: 0;
+			transform: translateY(14px);
+			animation: rise-in 680ms ease forwards;
+		}
+
+		.reveal.delay-1 {
+			animation-delay: 120ms;
+		}
+
+		.reveal.delay-2 {
+			animation-delay: 240ms;
+		}
+
+		.reveal.delay-3 {
+			animation-delay: 360ms;
+		}
+
+		@keyframes rise-in {
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@media (max-width: 1024px) {
+			.hero-grid,
+			.about-grid,
+			.contact-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.projects-grid {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			.skill-chip-grid {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+			}
+		}
+
+		@media (max-width: 720px) {
+			.site-header .container {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+
+			.main-nav {
+				width: 100%;
+				justify-content: flex-start;
+			}
+
+			.main-nav a {
+				flex: 1 1 auto;
+				text-align: center;
+			}
+
+			.projects-grid,
+			.skill-chip-grid,
+			.project-links {
+				grid-template-columns: 1fr;
+			}
+
+			.hero-shell,
+			.section-shell {
+				padding: 1rem;
+			}
+
+			.cta-row .btn {
+				flex: 1 1 auto;
+			}
+		}
+	</style>
+</head>
+<body>
+	<!--
+		QUICK CUSTOMIZATION GUIDE (HTML-ONLY)
+		1) Search for "EDIT:" comments to quickly find all text and image paths to replace.
+		2) Replace placeholder names, links, and image src values directly in this file.
+		3) Duplicate any .project-card block to add more projects.
+	-->
+
+	<header class="site-header">
+		<div class="container">
+			<!-- EDIT: Replace brand text with your studio or developer name -->
+			<p class="brand">[Your Name/Studio Name]</p>
+			<nav class="main-nav" aria-label="Primary Navigation">
+				<a href="#hero">Home</a>
+				<a href="#about">About</a>
+				<a href="#projects">Projects</a>
+				<a href="#skills">Skills</a>
+				<a href="#contact">Contact</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero" id="hero" aria-labelledby="hero-heading">
+			<div class="container">
+				<div class="hero-shell minecraft-frame reveal">
+					<div class="hero-grid">
+						<div class="reveal delay-1">
+							<p class="eyebrow">Custom Minecraft Experiences</p>
+							<!-- EDIT: Replace with your name or studio name -->
+							<h1 id="hero-heading">[Your Name/Studio Name]</h1>
+							<!-- EDIT: Replace with your professional tagline -->
+							<p class="tagline">Minecraft Mod Developer &amp; Game Designer</p>
+							<div class="cta-row">
+								<a class="btn primary" href="#projects">View My Mods</a>
+								<a class="btn secondary" href="#contact">Contact Me</a>
+							</div>
+						</div>
+
+						<aside class="hero-card reveal delay-2" aria-label="Hero Background Placeholder Info">
+							<h2>Hero Background Placeholder</h2>
+							<p>
+								<!-- EDIT: Replace the hero background URL in .hero-shell CSS -->
+								Current placeholder image is Minecraft-themed. Swap it with your own screenshot,
+								render, or cinematic scene.
+							</p>
+							<ul>
+								<li>Suggested size: 1600x900</li>
+								<li>Use PNG/JPG/WebP</li>
+								<li>Keep high contrast behind text</li>
+							</ul>
+						</aside>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" id="about" aria-labelledby="about-heading">
+			<div class="container">
+				<div class="section-shell minecraft-frame reveal">
+					<h2 class="section-title" id="about-heading">About Me</h2>
+					<p class="section-subtitle">Builder of immersive systems, worlds, and gameplay loops for the Minecraft universe.</p>
+					<div class="about-grid">
+						<article class="detail-panel reveal delay-1">
+							<!-- EDIT: Replace this biography paragraph with your own intro -->
+							<p>
+								Passionate Minecraft mod developer with expertise in [mention key skills like Java, Forge, Fabric].
+								I love creating immersive and innovative gameplay experiences within the Minecraft universe.
+							</p>
+						</article>
+						<aside class="detail-panel reveal delay-2">
+							<h3 class="project-title">Core Skills</h3>
+							<ul class="bullet-list" aria-label="About Me Skills">
+								<!-- EDIT: Replace or reorder these skill bullets -->
+								<li>Java gameplay system architecture</li>
+								<li>Minecraft Forge and Fabric mod pipelines</li>
+								<li>Procedural world and biome design</li>
+								<li>Balancing progression and player feedback loops</li>
+							</ul>
+						</aside>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" id="projects" aria-labelledby="projects-heading">
+			<div class="container">
+				<div class="section-shell minecraft-frame reveal">
+					<h2 class="section-title" id="projects-heading">Projects</h2>
+					<p class="section-subtitle">Featured mods and gameplay systems.</p>
+
+					<div class="projects-grid">
+						<article class="project-card reveal delay-1">
+							<figure class="project-media">
+								<!-- EDIT: Replace src with your project screenshot or demo thumbnail -->
+								<img src="https://placehold.co/800x450/668a46/f3f8e7?text=Project+1+Screenshot+or+Video+Thumbnail" alt="Placeholder image for Project 1 screenshot or demo video">
+							</figure>
+							<div class="project-body">
+								<!-- EDIT: Replace project title -->
+								<h3 class="project-title">[Project Name]</h3>
+								<!-- EDIT: Replace project description -->
+								<p class="project-description">A brief description of the mod/project.</p>
+								<!-- EDIT: Replace project features/tech -->
+								<p class="project-tech"><strong>Features/Tech:</strong> Key features and technologies used (e.g., Custom Biomes, New Items, Java, Forge API)</p>
+								<div class="project-links">
+									<!-- EDIT: Replace all href values with your real project links -->
+									<a href="https://github.com/your-username/project-name" target="_blank" rel="noopener noreferrer">GitHub</a>
+									<a href="https://www.curseforge.com/minecraft/mc-mods/your-mod" target="_blank" rel="noopener noreferrer">CurseForge</a>
+									<a href="https://modrinth.com/mod/your-mod" target="_blank" rel="noopener noreferrer">Modrinth</a>
+									<a href="https://www.youtube.com/watch?v=your-demo" target="_blank" rel="noopener noreferrer">YouTube</a>
+								</div>
+							</div>
+						</article>
+
+						<article class="project-card reveal delay-2">
+							<figure class="project-media">
+								<!-- EDIT: Replace src with your project screenshot or demo thumbnail -->
+								<img src="https://placehold.co/800x450/6a7b93/f2f7ff?text=Project+2+Screenshot+or+Video+Thumbnail" alt="Placeholder image for Project 2 screenshot or demo video">
+							</figure>
+							<div class="project-body">
+								<!-- EDIT: Replace project title -->
+								<h3 class="project-title">[Project Name]</h3>
+								<!-- EDIT: Replace project description -->
+								<p class="project-description">A brief description of the mod/project.</p>
+								<!-- EDIT: Replace project features/tech -->
+								<p class="project-tech"><strong>Features/Tech:</strong> Key features and technologies used (e.g., Custom Biomes, New Items, Java, Forge API)</p>
+								<div class="project-links">
+									<!-- EDIT: Replace all href values with your real project links -->
+									<a href="https://github.com/your-username/project-name" target="_blank" rel="noopener noreferrer">GitHub</a>
+									<a href="https://www.curseforge.com/minecraft/mc-mods/your-mod" target="_blank" rel="noopener noreferrer">CurseForge</a>
+									<a href="https://modrinth.com/mod/your-mod" target="_blank" rel="noopener noreferrer">Modrinth</a>
+									<a href="https://www.youtube.com/watch?v=your-demo" target="_blank" rel="noopener noreferrer">YouTube</a>
+								</div>
+							</div>
+						</article>
+
+						<article class="project-card reveal delay-3">
+							<figure class="project-media">
+								<!-- EDIT: Replace src with your project screenshot or demo thumbnail -->
+								<img src="https://placehold.co/800x450/8a6748/fff2df?text=Project+3+Screenshot+or+Video+Thumbnail" alt="Placeholder image for Project 3 screenshot or demo video">
+							</figure>
+							<div class="project-body">
+								<!-- EDIT: Replace project title -->
+								<h3 class="project-title">[Project Name]</h3>
+								<!-- EDIT: Replace project description -->
+								<p class="project-description">A brief description of the mod/project.</p>
+								<!-- EDIT: Replace project features/tech -->
+								<p class="project-tech"><strong>Features/Tech:</strong> Key features and technologies used (e.g., Custom Biomes, New Items, Java, Forge API)</p>
+								<div class="project-links">
+									<!-- EDIT: Replace all href values with your real project links -->
+									<a href="https://github.com/your-username/project-name" target="_blank" rel="noopener noreferrer">GitHub</a>
+									<a href="https://www.curseforge.com/minecraft/mc-mods/your-mod" target="_blank" rel="noopener noreferrer">CurseForge</a>
+									<a href="https://modrinth.com/mod/your-mod" target="_blank" rel="noopener noreferrer">Modrinth</a>
+									<a href="https://www.youtube.com/watch?v=your-demo" target="_blank" rel="noopener noreferrer">YouTube</a>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" id="skills" aria-labelledby="skills-heading">
+			<div class="container">
+				<div class="section-shell minecraft-frame reveal">
+					<h2 class="section-title" id="skills-heading">Skills &amp; Technologies</h2>
+					<p class="section-subtitle">Tools and platforms I use to ship polished mod experiences.</p>
+					<div class="skill-chip-grid" role="list" aria-label="Skills and Technologies">
+						<!-- EDIT: Replace, reorder, or duplicate skill chips -->
+						<div class="skill-chip" role="listitem"><span class="chip-icon">J</span><span>Java</span></div>
+						<div class="skill-chip" role="listitem"><span class="chip-icon">F</span><span>Minecraft Forge API</span></div>
+						<div class="skill-chip" role="listitem"><span class="chip-icon">FB</span><span>Fabric API</span></div>
+						<div class="skill-chip" role="listitem"><span class="chip-icon">BB</span><span>Blockbench</span></div>
+						<div class="skill-chip" role="listitem"><span class="chip-icon">G</span><span>Git</span></div>
+						<div class="skill-chip" role="listitem"><span class="chip-icon">U</span><span>Unity</span></div>
+						<div class="skill-chip" role="listitem"><span class="chip-icon">BL</span><span>Blender</span></div>
+						<div class="skill-chip" role="listitem"><span class="chip-icon">PX</span><span>Pixel Art</span></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" id="contact" aria-labelledby="contact-heading">
+			<div class="container">
+				<div class="section-shell minecraft-frame reveal">
+					<h2 class="section-title" id="contact-heading">Contact</h2>
+					<p class="section-subtitle">Available for commissions, collaborations, and long-term mod projects.</p>
+					<div class="contact-grid">
+						<article class="contact-panel reveal delay-1">
+							<p class="contact-note">Contact Form Placeholder</p>
+							<!-- EDIT: Connect form action to your backend service when ready -->
+							<form class="placeholder-form" action="#" method="post">
+								<label>
+									Name
+									<input type="text" name="name" placeholder="Player Name / Studio Name">
+								</label>
+								<label>
+									Email
+									<input type="email" name="email" placeholder="you@example.com">
+								</label>
+								<label>
+									Message
+									<textarea name="message" placeholder="Tell me about your mod idea, scope, and timeline..."></textarea>
+								</label>
+								<button class="btn primary" type="button">Send Message (Placeholder)</button>
+							</form>
+						</article>
+
+						<aside class="contact-panel reveal delay-2">
+							<p class="contact-note">Find me online</p>
+							<ul class="social-list">
+								<!-- EDIT: Replace social links -->
+								<li><a href="https://twitter.com/your-handle" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+								<li><a href="https://discord.com/users/your-discord-id" target="_blank" rel="noopener noreferrer">Discord</a></li>
+								<li><a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+								<li><a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+							</ul>
+							<p class="email-line">
+								<!-- EDIT: Replace with your email address -->
+								Email: <a href="mailto:[Your Email]">[Your Email]</a>
+							</p>
+						</aside>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container">
+			<!-- EDIT: Replace name/studio in footer -->
+			<p>© 2026 [Your Name/Studio Name]. All rights reserved.</p>
+		</div>
+	</footer>
+
+	<script>
+		// Minimal smooth-scroll navigation enhancement.
+		document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+			anchor.addEventListener("click", function (event) {
+				var targetId = anchor.getAttribute("href");
+				if (!targetId || targetId.length < 2) {
+					return;
+				}
+
+				var target = document.querySelector(targetId);
+				if (!target) {
+					return;
+				}
+
+				event.preventDefault();
+				target.scrollIntoView({ behavior: "smooth", block: "start" });
+				history.pushState(null, "", targetId);
+			});
+		});
+	</script>
+</body>
+</html>
