@@ -159,7 +159,7 @@
 			padding: clamp(1.4rem, 3vw, 2rem);
 			background:
 				linear-gradient(145deg, rgba(18, 16, 15, 0.86), rgba(42, 35, 31, 0.86)),
-				url("https://placehold.co/1600x900/50713f/edf7d2?text=Minecraft+Landscape+Background+Placeholder") center/cover no-repeat;
+				var(--hero-image, url("https://placehold.co/1600x900/50713f/edf7d2?text=Minecraft+Landscape+Background+Placeholder")) center/cover no-repeat;
 			color: #f4ede0;
 		}
 
@@ -522,6 +522,10 @@
 			word-break: break-word;
 		}
 
+		.quick-edit-zone {
+			display: none;
+		}
+
 		.site-footer {
 			padding: 1.2rem 0 1.8rem;
 			color: #f6f0df;
@@ -610,16 +614,60 @@
 </head>
 <body>
 	<!--
-		QUICK CUSTOMIZATION GUIDE (HTML-ONLY)
-		1) Search for "EDIT:" comments to quickly find all text and image paths to replace.
-		2) Replace placeholder names, links, and image src values directly in this file.
-		3) Duplicate any .project-card block to add more projects.
+		SINGLE QUICK EDIT ZONE (HTML-ONLY)
+		Only edit the JSON block below with your own content.
+		You no longer need to search through the whole file.
 	-->
+
+	<script id="quick-edit-zone" class="quick-edit-zone" type="application/json">
+	{
+		"siteName": "Jerald Dasillo / yardy",
+		"siteTagline": "Minecraft Mod Developer & Game Designer",
+		"heroEyebrow": "Custom Minecraft Experiences",
+		"heroBackgroundImage": "https://sl.bing.net/pLWQJLzVJI",
+		"aboutBio": "Passionate Minecraft mod developer with expertise in Bedrock. I love creating immersive and innovative gameplay experiences within the Minecraft universe.",
+		"aboutSkills": [
+			"Bedrock gameplay system architecture",
+			"Balancing progression and player feedback loops",
+			"Enhance player quality of life mods"
+		],
+		"projects": [
+			{
+				"title": "[Project Name]",
+				"description": "A brief description of the mod/project.",
+				"tech": "Key features and technologies used (e.g., Custom Biomes, New Items, Bedrock, Forge API)",
+				"image": "https://placehold.co/800x450/668a46/f3f8e7?text=Project+1+Screenshot+or+Video+Thumbnail",
+				"alt": "Placeholder image for Project 1 screenshot or demo video",
+				"links": {
+					"github": "https://github.com/your-username/project-name",
+					"curseforge": "https://www.curseforge.com/minecraft/mc-mods/your-mod",
+					"modrinth": "https://modrinth.com/mod/your-mod"
+				}
+			}
+		],
+		"skillsTech": [
+			{ "icon": "J", "label": "Java" },
+			{ "icon": "F", "label": "Minecraft Forge API" },
+			{ "icon": "FB", "label": "Fabric API" },
+			{ "icon": "BB", "label": "Blockbench" },
+			{ "icon": "G", "label": "Git" },
+			{ "icon": "U", "label": "Unity" },
+			{ "icon": "BL", "label": "Blender" },
+			{ "icon": "PX", "label": "Pixel Art" }
+		],
+		"socials": [
+			{ "name": "Facebook", "url": "https://facebook.com/yarddasillo" },
+			{ "name": "Discord", "url": "https://discordapp.com/users/yardy3656" },
+			{ "name": "GitHub", "url": "https://github.com/yardy796" }
+		],
+		"email": "jeralddasillo632@gmail.com",
+		"footerYear": "2026"
+	}
+	</script>
 
 	<header class="site-header">
 		<div class="container">
-			<!-- EDIT: Replace brand text with your studio or developer name -->
-			<p class="brand">[Your Name/Studio Name]</p>
+			<p class="brand" id="brand-name">[Your Name/Studio Name]</p>
 			<nav class="main-nav" aria-label="Primary Navigation">
 				<a href="#hero">Home</a>
 				<a href="#about">About</a>
@@ -636,11 +684,9 @@
 				<div class="hero-shell minecraft-frame reveal">
 					<div class="hero-grid">
 						<div class="reveal delay-1">
-							<p class="eyebrow">Custom Minecraft Experiences</p>
-							<!-- EDIT: Replace with your name or studio name -->
+							<p class="eyebrow" id="hero-eyebrow">Custom Minecraft Experiences</p>
 							<h1 id="hero-heading">[Your Name/Studio Name]</h1>
-							<!-- EDIT: Replace with your professional tagline -->
-							<p class="tagline">Minecraft Mod Developer &amp; Game Designer</p>
+							<p class="tagline" id="hero-tagline">Minecraft Mod Developer &amp; Game Designer</p>
 							<div class="cta-row">
 								<a class="btn primary" href="#projects">View My Mods</a>
 								<a class="btn secondary" href="#contact">Contact Me</a>
@@ -672,16 +718,14 @@
 					<p class="section-subtitle">Builder of immersive systems, worlds, and gameplay loops for the Minecraft universe.</p>
 					<div class="about-grid">
 						<article class="detail-panel reveal delay-1">
-							<!-- EDIT: Replace this biography paragraph with your own intro -->
-							<p>
+							<p id="about-bio">
 								Passionate Minecraft mod developer with expertise in [mention key skills like Java, Forge, Fabric].
 								I love creating immersive and innovative gameplay experiences within the Minecraft universe.
 							</p>
 						</article>
 						<aside class="detail-panel reveal delay-2">
 							<h3 class="project-title">Core Skills</h3>
-							<ul class="bullet-list" aria-label="About Me Skills">
-								<!-- EDIT: Replace or reorder these skill bullets -->
+							<ul class="bullet-list" id="about-skills-list" aria-label="About Me Skills">
 								<li>Java gameplay system architecture</li>
 								<li>Minecraft Forge and Fabric mod pipelines</li>
 								<li>Procedural world and biome design</li>
@@ -699,73 +743,7 @@
 					<h2 class="section-title" id="projects-heading">Projects</h2>
 					<p class="section-subtitle">Featured mods and gameplay systems.</p>
 
-					<div class="projects-grid">
-						<article class="project-card reveal delay-1">
-							<figure class="project-media">
-								<!-- EDIT: Replace src with your project screenshot or demo thumbnail -->
-								<img src="https://placehold.co/800x450/668a46/f3f8e7?text=Project+1+Screenshot+or+Video+Thumbnail" alt="Placeholder image for Project 1 screenshot or demo video">
-							</figure>
-							<div class="project-body">
-								<!-- EDIT: Replace project title -->
-								<h3 class="project-title">[Project Name]</h3>
-								<!-- EDIT: Replace project description -->
-								<p class="project-description">A brief description of the mod/project.</p>
-								<!-- EDIT: Replace project features/tech -->
-								<p class="project-tech"><strong>Features/Tech:</strong> Key features and technologies used (e.g., Custom Biomes, New Items, Java, Forge API)</p>
-								<div class="project-links">
-									<!-- EDIT: Replace all href values with your real project links -->
-									<a href="https://github.com/your-username/project-name" target="_blank" rel="noopener noreferrer">GitHub</a>
-									<a href="https://www.curseforge.com/minecraft/mc-mods/your-mod" target="_blank" rel="noopener noreferrer">CurseForge</a>
-									<a href="https://modrinth.com/mod/your-mod" target="_blank" rel="noopener noreferrer">Modrinth</a>
-									<a href="https://www.youtube.com/watch?v=your-demo" target="_blank" rel="noopener noreferrer">YouTube</a>
-								</div>
-							</div>
-						</article>
-
-						<article class="project-card reveal delay-2">
-							<figure class="project-media">
-								<!-- EDIT: Replace src with your project screenshot or demo thumbnail -->
-								<img src="https://placehold.co/800x450/6a7b93/f2f7ff?text=Project+2+Screenshot+or+Video+Thumbnail" alt="Placeholder image for Project 2 screenshot or demo video">
-							</figure>
-							<div class="project-body">
-								<!-- EDIT: Replace project title -->
-								<h3 class="project-title">[Project Name]</h3>
-								<!-- EDIT: Replace project description -->
-								<p class="project-description">A brief description of the mod/project.</p>
-								<!-- EDIT: Replace project features/tech -->
-								<p class="project-tech"><strong>Features/Tech:</strong> Key features and technologies used (e.g., Custom Biomes, New Items, Java, Forge API)</p>
-								<div class="project-links">
-									<!-- EDIT: Replace all href values with your real project links -->
-									<a href="https://github.com/your-username/project-name" target="_blank" rel="noopener noreferrer">GitHub</a>
-									<a href="https://www.curseforge.com/minecraft/mc-mods/your-mod" target="_blank" rel="noopener noreferrer">CurseForge</a>
-									<a href="https://modrinth.com/mod/your-mod" target="_blank" rel="noopener noreferrer">Modrinth</a>
-									<a href="https://www.youtube.com/watch?v=your-demo" target="_blank" rel="noopener noreferrer">YouTube</a>
-								</div>
-							</div>
-						</article>
-
-						<article class="project-card reveal delay-3">
-							<figure class="project-media">
-								<!-- EDIT: Replace src with your project screenshot or demo thumbnail -->
-								<img src="https://placehold.co/800x450/8a6748/fff2df?text=Project+3+Screenshot+or+Video+Thumbnail" alt="Placeholder image for Project 3 screenshot or demo video">
-							</figure>
-							<div class="project-body">
-								<!-- EDIT: Replace project title -->
-								<h3 class="project-title">[Project Name]</h3>
-								<!-- EDIT: Replace project description -->
-								<p class="project-description">A brief description of the mod/project.</p>
-								<!-- EDIT: Replace project features/tech -->
-								<p class="project-tech"><strong>Features/Tech:</strong> Key features and technologies used (e.g., Custom Biomes, New Items, Java, Forge API)</p>
-								<div class="project-links">
-									<!-- EDIT: Replace all href values with your real project links -->
-									<a href="https://github.com/your-username/project-name" target="_blank" rel="noopener noreferrer">GitHub</a>
-									<a href="https://www.curseforge.com/minecraft/mc-mods/your-mod" target="_blank" rel="noopener noreferrer">CurseForge</a>
-									<a href="https://modrinth.com/mod/your-mod" target="_blank" rel="noopener noreferrer">Modrinth</a>
-									<a href="https://www.youtube.com/watch?v=your-demo" target="_blank" rel="noopener noreferrer">YouTube</a>
-								</div>
-							</div>
-						</article>
-					</div>
+					<div class="projects-grid" id="projects-grid"></div>
 				</div>
 			</div>
 		</section>
@@ -775,17 +753,7 @@
 				<div class="section-shell minecraft-frame reveal">
 					<h2 class="section-title" id="skills-heading">Skills &amp; Technologies</h2>
 					<p class="section-subtitle">Tools and platforms I use to ship polished mod experiences.</p>
-					<div class="skill-chip-grid" role="list" aria-label="Skills and Technologies">
-						<!-- EDIT: Replace, reorder, or duplicate skill chips -->
-						<div class="skill-chip" role="listitem"><span class="chip-icon">J</span><span>Java</span></div>
-						<div class="skill-chip" role="listitem"><span class="chip-icon">F</span><span>Minecraft Forge API</span></div>
-						<div class="skill-chip" role="listitem"><span class="chip-icon">FB</span><span>Fabric API</span></div>
-						<div class="skill-chip" role="listitem"><span class="chip-icon">BB</span><span>Blockbench</span></div>
-						<div class="skill-chip" role="listitem"><span class="chip-icon">G</span><span>Git</span></div>
-						<div class="skill-chip" role="listitem"><span class="chip-icon">U</span><span>Unity</span></div>
-						<div class="skill-chip" role="listitem"><span class="chip-icon">BL</span><span>Blender</span></div>
-						<div class="skill-chip" role="listitem"><span class="chip-icon">PX</span><span>Pixel Art</span></div>
-					</div>
+					<div class="skill-chip-grid" id="skills-grid" role="list" aria-label="Skills and Technologies"></div>
 				</div>
 			</div>
 		</section>
@@ -818,16 +786,9 @@
 
 						<aside class="contact-panel reveal delay-2">
 							<p class="contact-note">Find me online</p>
-							<ul class="social-list">
-								<!-- EDIT: Replace social links -->
-								<li><a href="https://twitter.com/your-handle" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-								<li><a href="https://discord.com/users/your-discord-id" target="_blank" rel="noopener noreferrer">Discord</a></li>
-								<li><a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-								<li><a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-							</ul>
+							<ul class="social-list" id="social-list"></ul>
 							<p class="email-line">
-								<!-- EDIT: Replace with your email address -->
-								Email: <a href="mailto:[Your Email]">[Your Email]</a>
+								Email: <a id="email-link" href="mailto:[Your Email]">[Your Email]</a>
 							</p>
 						</aside>
 					</div>
@@ -838,12 +799,132 @@
 
 	<footer class="site-footer">
 		<div class="container">
-			<!-- EDIT: Replace name/studio in footer -->
-			<p>© 2026 [Your Name/Studio Name]. All rights reserved.</p>
+			<p id="footer-text">© 2026 [Your Name/Studio Name]. All rights reserved.</p>
 		</div>
 	</footer>
 
 	<script>
+		// Load all editable content from one place (#quick-edit-zone).
+		function escapeHtml(value) {
+			return String(value)
+				.replace(/&/g, "&amp;")
+				.replace(/</g, "&lt;")
+				.replace(/>/g, "&gt;")
+				.replace(/\"/g, "&quot;")
+				.replace(/'/g, "&#39;");
+		}
+
+		function renderPortfolioFromConfig() {
+			var source = document.getElementById("quick-edit-zone");
+			if (!source) {
+				return;
+			}
+
+			var data;
+			try {
+				data = JSON.parse(source.textContent);
+			} catch (error) {
+				console.error("Quick Edit Zone JSON is invalid.", error);
+				return;
+			}
+
+			var siteName = data.siteName || "[Your Name/Studio Name]";
+			var siteTagline = data.siteTagline || "Minecraft Mod Developer & Game Designer";
+
+			document.title = siteName + " | Minecraft Mod Developer";
+			var brandName = document.getElementById("brand-name");
+			var heroEyebrow = document.getElementById("hero-eyebrow");
+			var heroHeading = document.getElementById("hero-heading");
+			var heroTagline = document.getElementById("hero-tagline");
+			var aboutBio = document.getElementById("about-bio");
+
+			if (brandName) {
+				brandName.textContent = siteName;
+			}
+			if (heroEyebrow) {
+				heroEyebrow.textContent = data.heroEyebrow || "Custom Minecraft Experiences";
+			}
+			if (heroHeading) {
+				heroHeading.textContent = siteName;
+			}
+			if (heroTagline) {
+				heroTagline.textContent = siteTagline;
+			}
+			if (aboutBio) {
+				aboutBio.textContent = data.aboutBio || aboutBio.textContent;
+			}
+
+			if (data.heroBackgroundImage) {
+				document.documentElement.style.setProperty("--hero-image", 'url("' + data.heroBackgroundImage + '")');
+			}
+
+			var aboutSkillsList = document.getElementById("about-skills-list");
+			if (aboutSkillsList && Array.isArray(data.aboutSkills)) {
+				aboutSkillsList.innerHTML = data.aboutSkills.map(function (skill) {
+					return "<li>" + escapeHtml(skill) + "</li>";
+				}).join("");
+			}
+
+			var projectsGrid = document.getElementById("projects-grid");
+			if (projectsGrid && Array.isArray(data.projects)) {
+				projectsGrid.innerHTML = data.projects.map(function (project, index) {
+					var delayClass = index === 0 ? "delay-1" : index === 1 ? "delay-2" : "delay-3";
+					var links = project.links || {};
+					return [
+						'<article class="project-card reveal ' + delayClass + '">',
+							'<figure class="project-media">',
+								'<img src="' + escapeHtml(project.image || "") + '" alt="' + escapeHtml(project.alt || "Project media") + '">',
+							'</figure>',
+							'<div class="project-body">',
+								'<h3 class="project-title">' + escapeHtml(project.title || "[Project Name]") + '</h3>',
+								'<p class="project-description">' + escapeHtml(project.description || "A brief description of the mod/project.") + '</p>',
+								'<p class="project-tech"><strong>Features/Tech:</strong> ' + escapeHtml(project.tech || "") + '</p>',
+								'<div class="project-links">',
+									'<a href="' + escapeHtml(links.github || "#") + '" target="_blank" rel="noopener noreferrer">GitHub</a>',
+									'<a href="' + escapeHtml(links.curseforge || "#") + '" target="_blank" rel="noopener noreferrer">CurseForge</a>',
+									'<a href="' + escapeHtml(links.modrinth || "#") + '" target="_blank" rel="noopener noreferrer">Modrinth</a>',
+									'<a href="' + escapeHtml(links.youtube || "#") + '" target="_blank" rel="noopener noreferrer">YouTube</a>',
+								'</div>',
+							'</div>',
+						'</article>'
+					].join("");
+				}).join("");
+			}
+
+			var skillsGrid = document.getElementById("skills-grid");
+			if (skillsGrid && Array.isArray(data.skillsTech)) {
+				skillsGrid.innerHTML = data.skillsTech.map(function (skill) {
+					return [
+						'<div class="skill-chip" role="listitem">',
+							'<span class="chip-icon">' + escapeHtml(skill.icon || "*") + '</span>',
+							'<span>' + escapeHtml(skill.label || "Skill") + '</span>',
+						'</div>'
+					].join("");
+				}).join("");
+			}
+
+			var socialList = document.getElementById("social-list");
+			if (socialList && Array.isArray(data.socials)) {
+				socialList.innerHTML = data.socials.map(function (social) {
+					return '<li><a href="' + escapeHtml(social.url || "#") + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(social.name || "Social") + '</a></li>';
+				}).join("");
+			}
+
+			var email = data.email || "[Your Email]";
+			var emailLink = document.getElementById("email-link");
+			if (emailLink) {
+				emailLink.href = "mailto:" + email;
+				emailLink.textContent = email;
+			}
+
+			var footerText = document.getElementById("footer-text");
+			if (footerText) {
+				footerText.textContent = "© " + (data.footerYear || "2026") + " " + siteName + ". All rights reserved.";
+			}
+		}
+
+		renderPortfolioFromConfig();
+
 		// Minimal smooth-scroll navigation enhancement.
 		document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
 			anchor.addEventListener("click", function (event) {
