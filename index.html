@@ -638,8 +638,8 @@
 				"image": "https://tse2.mm.bing.net/th/id/OIP.uu97oL3YSqnGEhFFw3ZoQAHaDf?rs=1&pid=ImgDetMain&o=7&rm=3",
 				"alt": "Placeholder image for Project 1 screenshot or demo video",
 				"links": {	
-					"curseforge": "https://www.curseforge.com/minecraft-bedrock/addons/originspe-be-add-on-1-2",
-					"MCPEDL": "https://modrinth.com/mod/your-mod"
+					"Curseforge": "https://www.curseforge.com/minecraft-bedrock/addons/originspe-be-add-on-1-2",
+					"MCPEDL": "https://mcpedl.com/originspe-be-add-on-1-2/"
 				}
 			}
 		],
@@ -865,6 +865,36 @@
 				projectsGrid.innerHTML = data.projects.map(function (project, index) {
 					var delayClass = index === 0 ? "delay-1" : index === 1 ? "delay-2" : "delay-3";
 					var links = project.links || {};
+					var normalizedLinks = {};
+					Object.keys(links).forEach(function (key) {
+						normalizedLinks[String(key).toLowerCase()] = links[key];
+					});
+
+					var preferredOrder = ["github", "curseforge", "modrinth", "youtube", "mcpedl"];
+					var labelMap = {
+						curseforge: "CurseForge",
+						mcpedl: "MCPEDL"
+					};
+
+					var usedKeys = {};
+					var linkButtons = [];
+
+					preferredOrder.forEach(function (key) {
+						if (normalizedLinks[key]) {
+							usedKeys[key] = true;
+							linkButtons.push('<a href="' + escapeHtml(normalizedLinks[key]) + '" target="_blank" rel="noopener noreferrer">' + labelMap[key] + '</a>');
+						}
+					});
+
+					Object.keys(normalizedLinks).forEach(function (key) {
+						if (usedKeys[key]) {
+							return;
+						}
+						var customLabel = key.length <= 5
+							? key.toUpperCase()
+							: key.charAt(0).toUpperCase() + key.slice(1);
+						linkButtons.push('<a href="' + escapeHtml(normalizedLinks[key]) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(customLabel) + '</a>');
+					});
 					return [
 						'<article class="project-card reveal ' + delayClass + '">',
 							'<figure class="project-media">',
@@ -875,10 +905,7 @@
 								'<p class="project-description">' + escapeHtml(project.description || "A brief description of the mod/project.") + '</p>',
 								'<p class="project-tech"><strong>Features/Tech:</strong> ' + escapeHtml(project.tech || "") + '</p>',
 								'<div class="project-links">',
-									'<a href="' + escapeHtml(links.github || "#") + '" target="_blank" rel="noopener noreferrer">GitHub</a>',
-									'<a href="' + escapeHtml(links.curseforge || "#") + '" target="_blank" rel="noopener noreferrer">CurseForge</a>',
-									'<a href="' + escapeHtml(links.modrinth || "#") + '" target="_blank" rel="noopener noreferrer">Modrinth</a>',
-									'<a href="' + escapeHtml(links.youtube || "#") + '" target="_blank" rel="noopener noreferrer">YouTube</a>',
+									 linkButtons.join(""),
 								'</div>',
 							'</div>',
 						'</article>'
