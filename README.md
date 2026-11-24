@@ -1,6 +1,6 @@
 # Jerald Dasillo Portfolio
 
-A Next.js portfolio for Jerald Dasillo (yardy), built with the App Router, JavaScript, React and Tailwind CSS.
+A Next.js portfolio: Jerald Dasillo (yardy), built with the App Router, JavaScript, React and Tailwind CSS.
 
 ## Run locally
 
@@ -66,7 +66,3 @@ RESEND_API_KEY=re_your_key_here
 ```
 
 Without a key, submitting the form opens the visitor's email application using a `mailto:` link.
-
-## Deploy to Vercel
-
-Push the repository to GitHub, import it in Vercel, and add `RESEND_API_KEY` in the project Environment Variables settings. Vercel will build and deploy it automatically.
