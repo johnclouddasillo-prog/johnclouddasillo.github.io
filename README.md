@@ -30,6 +30,12 @@ Open `data/projects.js` and add one object to the `projects` array:
 
 An empty `image` value shows the built-in placeholder. Real links open in a new tab.
 
+### Add a clip
+
+Open `data/clips.js` and add a clip object with its platform, views, link, and thumbnail path. Clip thumbnails and platform icons belong in `public/images/` and `public/images/platforms/`. The clipping showcase automatically scrolls through every entry in this file.
+
+The `public/images/platforms/` folder is ready for platform icon images. Once icon files are uploaded, set each clip's `platformIcon` to a path such as `/images/platforms/instagram.svg`.
+
 ### Add a creative role
 
 Open `data/roles.js` and add a role object with a unique `id`, a short `label`, a headline `verb`, a description, and project IDs. Add that role ID to the matching projects' `roles` lists in `data/projects.js`. The homepage selector and filtered work section use this data.

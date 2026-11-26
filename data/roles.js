@@ -11,7 +11,7 @@ export const roles = [
   },
   {
     id: "game-dev",
-    label: "Solo game dev",
+    label: "Game dev",
     verb: "worlds",
     description:
       "I build game ideas independently, from the first mechanic to a playable Minecraft Bedrock add-on.",
