@@ -18,12 +18,12 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://yardy.dev"),
-  title: "Jerald Dasillo | Clipper and Video Editor",
+  metadataBase: new URL("https://jeralddasillo.me"),
+  title: "Jerald Dasillo | Independent Creative",
   description:
-    "Portfolio of Jerald Dasillo (yardy), a clipper and video editor who creates short, replayable edits and Minecraft mods.",
+    "Portfolio of Jerald Dasillo (yardy): short-form editing, solo game development, concept design, and 3D modeling.",
   openGraph: {
-    title: "Jerald Dasillo | Clipper and Video Editor",
+    title: "Jerald Dasillo | Independent Creative",
     description:
       "Short-form clips, video editing, and Minecraft mod side projects.",
     type: "website",

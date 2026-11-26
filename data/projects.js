@@ -1,10 +1,12 @@
 export const projects = [
   {
+    id: "clip-reel",
     title: "Clip reel",
     tag: "Clipping",
-    desc: "Placeholder for selected short-form edits and high-energy clip reels.",
+    desc: "High-energy short-form edits of streams and gameplay, built around a strong hook and replayable moments.",
     image: "/images/instagram-most-viewed.png",
     video: "",
+    roles: ["clipper"],
     links: [
       {
         label: "YouTube",
@@ -22,11 +24,13 @@ export const projects = [
     ],
   },
   {
+    id: "originspe",
     title: "OriginsPE",
     tag: "Minecraft mod, partly built",
     desc: "A Minecraft Bedrock add-on that introduces unique origin powers and mechanics.",
     image: "",
     video: "",
+    roles: ["game-dev", "conceptor"],
     links: [
       {
         label: "CurseForge",

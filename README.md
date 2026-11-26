@@ -30,6 +30,10 @@ Open `data/projects.js` and add one object to the `projects` array:
 
 An empty `image` value shows the built-in placeholder. Real links open in a new tab.
 
+### Add a creative role
+
+Open `data/roles.js` and add a role object with a unique `id`, a short `label`, a headline `verb`, a description, and project IDs. Add that role ID to the matching projects' `roles` lists in `data/projects.js`. The homepage selector and filtered work section use this data.
+
 ### Add a skill
 
 Open `data/skills.js` and add the skill name to the array.
@@ -52,6 +56,8 @@ Open `data/site.js` and add an object to `site.socials`:
 ```
 
 The component should render a `<section id="new-section">`. The header and active-section highlighting update automatically.
+
+The contact form is its own page at `/contact`; its handler remains at `/api/contact`.
 
 ### Change the colors
 

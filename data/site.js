@@ -6,7 +6,7 @@ export const site = {
   intro:
     "Jerald Dasillo cuts short, high-energy clips from streams and long videos, and still builds Minecraft mods on the side.",
   bio:
-    "I find the best moments in streams and long videos and turn them into clips people want to watch again. Before clipping, I built Minecraft Bedrock mods, and I still work on them when I can.",
+    "I move between a few creative practices: cutting short-form clips, building Minecraft Bedrock projects, shaping concepts, and learning 3D modeling with Blockbench.",
   email: "jeralddasillo632@gmail.com",
   socials: [
     { label: "Facebook", href: "https://facebook.com/yarddasillo" },

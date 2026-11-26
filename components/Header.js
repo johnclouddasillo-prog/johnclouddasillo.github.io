@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { sections } from "@/data/sections";
 
 export default function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState("work");
@@ -43,7 +45,7 @@ export default function Header() {
       }`}
     >
       <div className="container-shell flex h-full items-center">
-        <a href="#work" aria-label="Go to Work" className="flex items-center gap-3">
+        <a href="/" aria-label="Go to home" className="flex items-center gap-3">
           <span className="flex h-9 w-9 items-center justify-center bg-accent font-serif text-[28px] leading-none text-card">
             Y
           </span>
@@ -59,7 +61,7 @@ export default function Header() {
           {sections.map((section) => (
             <a
               key={section.id}
-              href={`#${section.id}`}
+              href={pathname === "/" ? `#${section.id}` : `/#${section.id}`}
               className={`font-mono text-[10px] uppercase tracking-[0.12em] transition-colors ${
                 active === section.id ? "text-accent" : "hover:text-accent"
               }`}
@@ -67,8 +69,8 @@ export default function Header() {
               {section.label} <span className="opacity-50">{section.number}</span>
             </a>
           ))}
-          <a href="#contact" className="text-link font-mono text-[10px] uppercase tracking-[0.12em]">
-            Start a project
+          <a href="/contact" className="text-link font-mono text-[10px] uppercase tracking-[0.12em]">
+            Contact
           </a>
         </nav>
 
@@ -92,7 +94,7 @@ export default function Header() {
           {sections.map((section) => (
             <a
               key={section.id}
-              href={`#${section.id}`}
+              href={pathname === "/" ? `#${section.id}` : `/#${section.id}`}
               onClick={closeMenu}
               className="flex items-center justify-between border-b border-ink/10 py-4 font-mono text-[12px] uppercase tracking-[0.12em]"
             >
@@ -100,7 +102,7 @@ export default function Header() {
             </a>
           ))}
           <a
-            href="#contact"
+            href="/contact"
             onClick={closeMenu}
             className="block pt-5 font-mono text-[12px] uppercase tracking-[0.12em] text-accent"
           >

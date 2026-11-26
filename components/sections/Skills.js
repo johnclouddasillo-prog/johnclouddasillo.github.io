@@ -12,7 +12,7 @@ export default function Skills() {
           <SectionTitle
             number="03"
             title="Skills"
-            description="Tools and disciplines behind the clips, edits and mods."
+            description="Tools and disciplines behind my videos, game projects, concepts and models."
           />
         </Reveal>
         <Reveal className="mt-10 grid grid-cols-3 gap-3 md:grid-cols-9">

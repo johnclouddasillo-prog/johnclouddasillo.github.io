@@ -3,9 +3,9 @@ import SectionTitle from "@/components/ui/SectionTitle";
 import { site } from "@/data/site";
 
 const focusPoints = [
-  "Spotting the moment worth clipping",
-  "Fast pacing, strong hooks and clean captions",
-  "Minecraft Bedrock mods as a side project",
+  "Short-form video editing and pacing",
+  "Game mechanics, concepts and world-building",
+  "Early 3D modeling with Blockbench",
 ];
 
 export default function About() {

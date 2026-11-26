@@ -1,7 +1,7 @@
+import Image from "next/image";
 import Button from "@/components/ui/Button";
 import TiltPanel from "@/components/effects/TiltPanel";
 import { site } from "@/data/site";
-import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -27,7 +27,7 @@ export default function Hero() {
           <p className="max-w-[560px] text-[15px] leading-7 text-muted">{site.intro}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button href="#work" variant="solid">View my work</Button>
-            <Button href="#contact" variant="outline">Contact me</Button>
+            <Button href="/contact" variant="outline">Contact me</Button>
           </div>
         </div>
 
@@ -40,7 +40,7 @@ export default function Hero() {
           <div className="hero-frame-index" aria-hidden="true">FRAME / 01</div>
           <div className="absolute left-5 top-5 font-mono text-[10px] uppercase tracking-[0.16em] text-card">Clipper</div>
           <div className="absolute right-5 top-5 font-mono text-[10px] uppercase tracking-[0.16em] text-card">2026</div>
-          <div className="absolute bottom-5 left-5 font-mono text-[10px] text-card">yardy</div>
+          <div className="absolute bottom-5 left-5 font-mono text-[10px] text-card">{site.handle}</div>
           <div className="absolute bottom-5 right-5 flex items-center gap-2 font-mono text-[10px] text-card">
             <span className="h-1.5 w-1.5 rounded-full bg-card" />
             Clips
@@ -52,7 +52,7 @@ export default function Hero() {
               alt="Jerald Dasillo"
               fill
               priority
-              sizes="(max-width: 640px) 260px, 360px"
+              sizes="(max-width: 640px) 90vw, 40vw"
               className="object-contain object-bottom"
             />
           </div>
