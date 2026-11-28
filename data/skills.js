@@ -6,4 +6,5 @@ export const skills = [
   "JavaScript",
   "Blockbench",
   "Regolith",
+  "3D modeling"
 ];
