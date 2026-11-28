@@ -6,10 +6,10 @@ import { site } from "@/data/site";
 export default function Hero() {
   return (
     <section
-      className="mt-[72px] flex h-[calc(100vh-72px)] min-h-[620px] items-center overflow-hidden"
+      className="hero-section relative isolate mt-[72px] flex h-[calc(100vh-72px)] min-h-[620px] items-center overflow-hidden"
       aria-labelledby="hero-title"
     >
-      <div className="container-shell grid h-full items-center gap-6 md:grid-cols-[74px_minmax(0,1fr)_minmax(300px,36%)]">
+      <div className="container-shell relative z-10 grid h-full items-center gap-6 md:grid-cols-[74px_minmax(0,1fr)_minmax(300px,36%)]">
         <div className="hidden h-[min(68vh,660px)] flex-col items-center pt-2 md:flex">
           <p className="eyebrow whitespace-nowrap [writing-mode:vertical-rl]">Portfolio / 2026</p>
           <span className="mt-5 h-16 w-px bg-ink/45" />
@@ -32,16 +32,17 @@ export default function Hero() {
         </div>
 
         <TiltPanel className="hero-panel">
+          <div className="hero-fluid" aria-hidden="true" />
           <div data-grid className="hero-panel-grid" />
           <div className="hero-scan" aria-hidden="true" />
           <div data-ghost-frame className="hero-ghost-frame" aria-hidden="true" />
           <div className="hero-crosshair hero-crosshair-x" aria-hidden="true" />
           <div className="hero-crosshair hero-crosshair-y" aria-hidden="true" />
           <div className="hero-frame-index" aria-hidden="true">FRAME / 01</div>
-          <div className="absolute left-5 top-5 font-mono text-[10px] uppercase tracking-[0.16em] text-card">Clipper</div>
-          <div className="absolute right-5 top-5 font-mono text-[10px] uppercase tracking-[0.16em] text-card">2026</div>
-          <div className="absolute bottom-5 left-5 font-mono text-[10px] text-card">{site.handle}</div>
-          <div className="absolute bottom-5 right-5 flex items-center gap-2 font-mono text-[10px] text-card">
+          <div className="absolute left-5 top-5 z-10 font-mono text-[10px] uppercase tracking-[0.16em] text-card">Clipper</div>
+          <div className="absolute right-5 top-5 z-10 font-mono text-[10px] uppercase tracking-[0.16em] text-card">2026</div>
+          <div className="absolute bottom-5 left-5 z-10 font-mono text-[10px] text-card">{site.handle}</div>
+          <div className="absolute bottom-5 right-5 z-10 flex items-center gap-2 font-mono text-[10px] text-card">
             <span className="h-1.5 w-1.5 rounded-full bg-card" />
             Clips
             <span className="h-1.5 w-1.5 rounded-full bg-card" />

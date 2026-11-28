@@ -10,18 +10,22 @@ export default function Work({ activeRole = roles[0].id }) {
   const selectedProjects = projects.filter((project) =>
     selectedRole.projectIds.includes(project.id)
   );
+  const isClipper = selectedRole.id === "clipper";
 
   return (
-    <section id="work" className="scroll-mt-[72px] py-24 md:py-32">
+    <section
+      id="work"
+      className={`scroll-mt-[72px] py-24 md:py-32${isClipper ? " work-section-clips" : ""}`}
+    >
       <div className="container-shell">
-        <Reveal>
+        <Reveal className={isClipper ? "work-section-clips-title" : ""}>
           <SectionTitle
             number="01"
             title={selectedRole.label}
             description={`Selected work across ${selectedRole.label.toLowerCase()} projects.`}
           />
         </Reveal>
-        <Reveal className="mt-2">
+        <Reveal className={isClipper ? "work-section-clips-content" : "mt-2"}>
           {selectedRole.id === "clipper" ? (
             <ClipHighlights />
           ) : (

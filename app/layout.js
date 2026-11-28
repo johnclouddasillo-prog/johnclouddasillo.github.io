@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Instrument_Serif, Inter, JetBrains_Mono } from "next/font/google";
+import SiteAtmosphere from "@/components/effects/SiteAtmosphere";
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
@@ -36,7 +37,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${instrumentSerif.variable} ${inter.variable} ${jetbrainsMono.variable}`}
       >
-        {children}
+        <SiteAtmosphere />
+        <div className="site-content">{children}</div>
       </body>
     </html>
   );
